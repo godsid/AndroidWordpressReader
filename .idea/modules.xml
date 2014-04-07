@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Libraries/Libraries.iml" filepath="$PROJECT_DIR$/Libraries/Libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WordPressReader.iml" filepath="$PROJECT_DIR$/WordPressReader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WordPressReader/WordPressReader-WordPressReader.iml" filepath="$PROJECT_DIR$/WordPressReader/WordPressReader-WordPressReader.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,1 +1,1 @@
-include ':WordPressReader', ':WordPressReaderLib'
+include ':WordPressReader', ':Libraries'

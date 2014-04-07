@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="ทดสอบประสิทธิภาพเว็บด้วย Apache Benchmark"
+        android:id="@+id/title"
+        android:textColor="#0000ff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="โดย บรรพต สีหะวงษ์ on Monday February, 17 2014"
+        android:id="@+id/created"
+        android:textColor="#555555" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageCover" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="เมื่อเราพัฒนาเว็บของเราเสร็จแล้วหากเราต้องการรู้ว่า ระบบที่เราออกแบบ และ code ที่เราเขียนนั้น หรือแม้แต่กระทั่ง server ที่เราใช้งานอยุ่นั้นสามารถรองรับ user ที่เข้ามาใช้งานได้จำนวนเท่าไหร่ เพื่อที่จะได้ปรับจูนระบบหรือเอาไว้เป็นข้อมูลในการขยับขยายระบบ ในอนาคตได้"
+            android:id="@+id/description"
+            android:textColor="#3b3b3b" />
+
+    </LinearLayout>
+
+</LinearLayout>
