@@ -20,6 +20,7 @@ public class RssItem implements Comparable<RssItem>, Parcelable {
     private Date pubDate;
     private String description;
     private String content;
+    private int id;
 
     public RssItem() {
 
@@ -28,6 +29,7 @@ public class RssItem implements Comparable<RssItem>, Parcelable {
     public RssItem(Parcel source) {
 
         Bundle data = source.readBundle();
+        id = data.getInt("id");
         title = data.getString("title");
         link = data.getString("link");
         pubDate = (Date) data.getSerializable("pubDate");
@@ -59,7 +61,16 @@ public class RssItem implements Comparable<RssItem>, Parcelable {
         }
     };
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
+
     public int describeContents() {
         return 0;
     }

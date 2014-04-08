@@ -2,18 +2,32 @@ package info.srihawong.wordpressreader;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+
+import info.srihawong.libraries.RssFeed;
+import info.srihawong.libraries.RssItem;
+import info.srihawong.libraries.RssReader;
 
 
 public class MainActivity extends ActionBarActivity
@@ -108,6 +122,9 @@ public class MainActivity extends ActionBarActivity
          * The fragment argument representing the section number for this
          * fragment.
          */
+
+
+
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         /**
@@ -129,8 +146,50 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+            ListView contentListView = (ListView) rootView.findViewById(R.id.contentListView);
+
+            Log.i("tui","onCreateView");
+            class ContentListRequest extends AsyncTask<String,Integer,Long>{
+                RssFeed feed;
+                TopicListAdapter contentListAdapter;
+                ArrayList<TopicListItem> contentListItems = new ArrayList<TopicListItem>();
+                ArrayList<RssItem> rssItems;
+                ListView contentListView;
+
+                ContentListRequest(ListView contentListView) {
+                    this.contentListView = contentListView;
+                }
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                }
+                @Override
+                protected Long doInBackground(String... params) {
+                    try {
+                        feed = RssReader.read(new URL("http://banpot.srihawong.info/feed"));
+                    } catch (SAXException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+                @Override
+                protected void onPostExecute(Long aLong) {
+                    super.onPostExecute(aLong);
+                    rssItems = feed.getRssItems();
+                    for(RssItem rssItem : rssItems) {
+                        //Log.i("RSS Reader", rssItem.getTitle());
+                        contentListItems.add(new TopicListItem(rssItem.getId(),0,rssItem.getTitle(),"tui",rssItem.getDescription(),rssItem.getPubDate().getTime()));
+                    }
+                    contentListAdapter = new TopicListAdapter(getActivity().getBaseContext(),contentListItems);
+                    contentListView.setAdapter(contentListAdapter);
+                }
+            }
+
+            new ContentListRequest(contentListView).execute();
             return rootView;
         }
 
@@ -140,9 +199,14 @@ public class MainActivity extends ActionBarActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
 
-            Intent intent;
+            Log.i("tui","onAttach");
+
+
+
+            /*Intent intent;
             intent = new Intent(getActivity().getApplicationContext(),DetailActivity.class);
             startActivity(intent);
+            */
         }
     }
 
