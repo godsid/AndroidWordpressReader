@@ -21,6 +21,10 @@ public class RssItem implements Comparable<RssItem>, Parcelable {
     private String description;
     private String content;
     private int id;
+    private String commentsRss;
+    private String commentsCount;
+    private String[] category;
+    private String creator;
 
     public RssItem() {
 
@@ -29,10 +33,15 @@ public class RssItem implements Comparable<RssItem>, Parcelable {
     public RssItem(Parcel source) {
 
         Bundle data = source.readBundle();
+
         id = data.getInt("id");
         title = data.getString("title");
         link = data.getString("link");
+        commentsRss = data.getString("commentsRss");
+        commentsCount = data.getString("commentsCount","0");
         pubDate = (Date) data.getSerializable("pubDate");
+        category = data.getStringArray("category");
+        creator = data.getString("creator");
         description = data.getString("description");
         content = data.getString("content");
         feed = data.getParcelable("feed");
@@ -48,6 +57,10 @@ public class RssItem implements Comparable<RssItem>, Parcelable {
         data.putSerializable("pubDate", pubDate);
         data.putString("description", description);
         data.putString("content", content);
+        data.putString("commentsRss", commentsRss);
+        data.putString("commentsCount", commentsCount);
+        data.putStringArray("category", category);
+        data.putString("creator", creator);
         data.putParcelable("feed", feed);
         dest.writeBundle(data);
     }
@@ -130,6 +143,41 @@ public class RssItem implements Comparable<RssItem>, Parcelable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCommentsRss() {
+        return commentsRss;
+    }
+
+    public void setCommentsRss(String commentsRss) {
+        this.commentsRss = commentsRss;
+    }
+
+    public String getCommentsCount() {
+        if(commentsCount==null){
+            commentsCount = "0";
+        }
+        return commentsCount;
+    }
+
+    public void setCommentsCount(String commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public String[] getCategory() {
+        return category;
+    }
+
+    public void setCategory(String[] category) {
+        this.category = category;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     @Override

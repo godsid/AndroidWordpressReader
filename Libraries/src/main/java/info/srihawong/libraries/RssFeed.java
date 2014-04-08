@@ -3,6 +3,7 @@ package info.srihawong.libraries;
 /**
  * Created by godsid on 4/5/14.
  */
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import android.os.Bundle;
@@ -11,10 +12,17 @@ import android.os.Parcelable;
 
 public class RssFeed implements Parcelable {
 
+
+
     private String title;
     private String link;
     private String description;
     private String language;
+    private String commentsRss;
+    private String commentsCount;
+    private String pubDate;
+    private String creator;
+    private String[] category;
     private ArrayList<RssItem> rssItems;
 
     public RssFeed() {
@@ -26,6 +34,11 @@ public class RssFeed implements Parcelable {
         Bundle data = source.readBundle();
         title = data.getString("title");
         link = data.getString("link");
+        commentsRss = data.getString("commentsRss");
+        commentsCount = data.getString("commentsCount");
+        pubDate = data.getString("pubDate");
+        category = data.getStringArray("category");
+        creator = data.getString("creator");
         description = data.getString("description");
         language = data.getString("language");
         rssItems = data.getParcelableArrayList("rssItems");
@@ -40,6 +53,11 @@ public class RssFeed implements Parcelable {
         data.putString("link", link);
         data.putString("description", description);
         data.putString("language", language);
+        data.putString("commentsRss",commentsRss);
+        data.putString("commentsCount",commentsCount);
+        data.putString("pubDate",pubDate);
+        data.putStringArray("category",category);
+        data.putString("creator",creator);
         data.putParcelableArrayList("rssItems", rssItems);
         dest.writeBundle(data);
     }
@@ -100,5 +118,45 @@ public class RssFeed implements Parcelable {
 
     public void setRssItems(ArrayList<RssItem> rssItems) {
         this.rssItems = rssItems;
+    }
+
+    public String getCommentsRss() {
+        return commentsRss;
+    }
+
+    public void setCommentsRss(String commentsRss) {
+        this.commentsRss = commentsRss;
+    }
+
+    public String getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(String commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String[] getCategory() {
+        return category;
+    }
+
+    public void setCategory(String[] category) {
+        this.category = category;
     }
 }

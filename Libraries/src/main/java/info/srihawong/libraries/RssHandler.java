@@ -70,6 +70,15 @@ public class RssHandler extends DefaultHandler {
                 if(qName.equals("content:encoded")) {
                     qName = "content";
                 }
+                if(qName.equals("dc:creator")) {
+                    qName = "creator";
+                }
+                if(qName.equals("wfw:commentRss")) {
+                    qName = "commentsRss";
+                }
+                if(qName.equals("slash:comments")) {
+                    qName = "commentsCount";
+                }
                 String methodName = "set" + qName.substring(0, 1).toUpperCase() + qName.substring(1);
                 Method method = rssItem.getClass().getMethod(methodName, String.class);
 

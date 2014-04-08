@@ -150,7 +150,7 @@ public class MainActivity extends ActionBarActivity
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             ListView contentListView = (ListView) rootView.findViewById(R.id.contentListView);
 
-            Log.i("tui","onCreateView");
+
             class ContentListRequest extends AsyncTask<String,Integer,Long>{
                 RssFeed feed;
                 TopicListAdapter contentListAdapter;
@@ -181,8 +181,8 @@ public class MainActivity extends ActionBarActivity
                     super.onPostExecute(aLong);
                     rssItems = feed.getRssItems();
                     for(RssItem rssItem : rssItems) {
-                        //Log.i("RSS Reader", rssItem.getTitle());
-                        contentListItems.add(new TopicListItem(rssItem.getId(),0,rssItem.getTitle(),"tui",rssItem.getDescription(),rssItem.getPubDate().getTime()));
+
+                        contentListItems.add(new TopicListItem(rssItem.getId(),Integer.valueOf(rssItem.getCommentsCount()),rssItem.getTitle(),rssItem.getCreator(),rssItem.getDescription(),rssItem.getPubDate().getTime()));
                     }
                     contentListAdapter = new TopicListAdapter(getActivity().getBaseContext(),contentListItems);
                     contentListView.setAdapter(contentListAdapter);
