@@ -8,9 +8,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Libraries" />
-            <option value="$PROJECT_DIR$/WordPressReader" />
+            <option value="D:\App\Android\WordpressReader" />
+            <option value="D:\App\Android\WordpressReader\Libraries" />
+            <option value="D:\App\Android\WordpressReader\WordPressReader" />
           </set>
         </option>
       </GradleProjectSettings>

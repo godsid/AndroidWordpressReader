@@ -150,7 +150,6 @@ public class MainActivity extends ActionBarActivity
             //textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             ListView contentListView = (ListView) rootView.findViewById(R.id.contentListView);
 
-
             class ContentListRequest extends AsyncTask<String,Integer,Long>{
                 RssFeed feed;
                 TopicListAdapter contentListAdapter;
@@ -168,7 +167,7 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 protected Long doInBackground(String... params) {
                     try {
-                        feed = RssReader.read(new URL("http://banpot.srihawong.info/feed"));
+                        feed = RssReader.read(new URL(getString(R.string.api_url_home)));
                     } catch (SAXException e) {
                         e.printStackTrace();
                     } catch (IOException e) {

@@ -26,4 +26,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_detail">Detail</string>
 
+    <string name="api_url_home">http://banpot.srihawong.info/feed</string>
+    <string name="api_url_category">http://banpot.srihawong.info/category/{category}/feed/</string>
+    <string name="api_url_comment">http://banpot.srihawong.info/{category}/{link}/feed/</string>
+    <string name="api_url_comments">http://banpot.srihawong.info/comments/feed/</string>
+    <string name="api_url_tag">http://banpot.srihawong.info/tag/{tag}/feed/</string>
+
+
 </resources>
